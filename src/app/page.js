@@ -128,8 +128,8 @@ export default function LandingPage() {
           {submitted ? (
             <div className="text-center py-8">
               <p className="text-green-600 text-xl font-medium">Thank you for your interest!</p>
-              <p className="text-gray-700 mt-2"><p>We&apos;ll contact you shortly about our delicious buyu products.</p>
-              </p>
+              <p className="text-gray-700 mt-2">We&apos;ll contact you shortly about our delicious buyu products.</p> 
+              
             </div>
           ) : (
             <div className="space-y-4">
