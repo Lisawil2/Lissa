@@ -1,4 +1,5 @@
 "use client";
+import emailjs from '@emailjs/browser';
 import { useState } from 'react';
 import Image from 'next/image';
 
@@ -22,19 +23,30 @@ export default function LandingPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    });
-
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 5000);
+  
+    emailjs
+      .send(
+        'service_v70acy6',   // Replace with your actual service ID
+        'template_aeqgmye',  // Replace with your actual template ID
+        formData,
+        'o5Tza7ezMBSvVWrdf'    // Replace with your actual public key
+      )
+      .then(
+        (response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          setSubmitted(true);
+          setFormData({ name: '', email: '', phone: '', message: '' });
+  
+          setTimeout(() => {
+            setSubmitted(false);
+          }, 5000);
+        },
+        (error) => {
+          console.log('FAILED...', error);
+        }
+      );
   };
+  
 
   const products = [
     {
@@ -195,3 +207,4 @@ export default function LandingPage() {
     </div>
   );
 }
+
